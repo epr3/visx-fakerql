@@ -48,15 +48,20 @@ export const GraphContainer: FunctionComponent<Props> = ({
   const xMax = width;
   const yMax = height - defaultMargin.top - 100;
 
-  const postTotals = data.reduce((acc: { [key: string]: number }, val) => {
-    const itemMonth = formatDate(getDate(val));
-    if (acc[itemMonth]) {
-      acc[itemMonth]++;
-    } else {
-      acc[itemMonth] = 1;
-    }
-    return acc;
-  }, {});
+  // filter by year
+  const postTotals = data
+    .filter((item) => {
+      return new Date(parseInt(getDate(item))).getFullYear() === 2019;
+    })
+    .reduce((acc: { [key: string]: number }, val) => {
+      const itemMonth = formatDate(getDate(val));
+      if (acc[itemMonth]) {
+        acc[itemMonth]++;
+      } else {
+        acc[itemMonth] = 1;
+      }
+      return acc;
+    }, {});
 
   // scales
   const dateScale = useMemo(
