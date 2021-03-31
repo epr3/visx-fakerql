@@ -79,7 +79,7 @@ export const GraphContainer: FunctionComponent<Props> = ({
   );
 
   return width < 10 ? null : (
-    <svg width={width} height={height}>
+    <svg data-testid="graph-container" width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill="#eaedff" rx={14} />
       <Grid
         top={defaultMargin.top}
@@ -103,6 +103,7 @@ export const GraphContainer: FunctionComponent<Props> = ({
           return (
             <React.Fragment key={`bar-${date}`}>
               <Bar
+                data-testid="bar"
                 x={barX}
                 y={barY}
                 width={barWidth}
@@ -110,6 +111,7 @@ export const GraphContainer: FunctionComponent<Props> = ({
                 fill="rgba(23, 233, 217, .5)"
               />
               <text
+                data-testid="text"
                 x={barX! + barWidth / 2 - 6}
                 y={yMax - barHeight}
                 fontSize={12}
